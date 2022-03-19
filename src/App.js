@@ -3,6 +3,10 @@ import styled from "styled-components";
 import Axios from "axios";
 import CityComponent from "./modules/CityComponent";
 import WeatherComponent from "./modules/WeatherInfoComponent";
+import dotenv from "dotenv";
+
+dotenv.config();
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const WeatherIcons = {
 	"01d": "icons/sunny.svg",
@@ -54,7 +58,7 @@ function App() {
 	const fetchWeather = async (e) => {
 		e.preventDefault();
 		const response = await Axios.get(
-			`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fe651f25c483eadeef9dbb30c2a2ae93`
+			`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
 		);
 		updateWeather(response.data);
 	};
